@@ -1,0 +1,90 @@
+.cont{
+    background-image: url('../../../assets/images/calc2.jpg');
+    min-height: 105vh;
+}
+
+img{
+    opacity: 0.5;
+}
+
+.type>h4{
+    width: 80vb;
+    cursor: pointer;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: bisque;
+    color: rgb(0, 0, 0);
+}
+
+.type>h4:hover{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+
+.contents>li{
+    padding: 0px 15px;
+}
+
+.box{
+    width: 500px;
+    height: 400px;
+    top: 45%;
+    left: 50%;
+    position: absolute;
+    margin-top: -200px;
+    margin-left: -250px;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.cursor:hover{
+    cursor: pointer;
+    background-color: rgb(189, 189, 137);
+}
+
+.btnfn:hover{
+    background-color: black !important;
+}
+
+@media screen and (max-width:767px){
+    .balance{
+        text-align: start ;
+    }
+}
+
+@media screen and (max-width:650px){
+    .resize{
+        width: 200px !important;
+    }
+    .budget{
+        width: 30%;
+        font-size: small;
+    }
+    .balance{
+        /* background-color: aliceblue; */
+        text-align: start;
+    }
+ 
+    .prop>*{
+        margin: 2px !important;
+    }
+
+    .minsize{
+        display: none;
+    }
+}
+
+@media screen and (max-width:570px){
+    .resize{
+        width: 150px !important;
+    }
+    .prop>*{
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        margin: 0 ;
+    }
+}
+

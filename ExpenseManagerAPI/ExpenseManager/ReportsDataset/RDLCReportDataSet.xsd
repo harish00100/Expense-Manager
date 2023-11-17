@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RDLCReportDataSet" targetNamespace="http://tempuri.org/RDLCReportDataSet.xsd" xmlns:mstns="http://tempuri.org/RDLCReportDataSet.xsd" xmlns="http://tempuri.org/RDLCReportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="RDLCReportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="RDLCReportDataSet" msprop:Generator_UserDSName="RDLCReportDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ExpenseManagerDataTable" msprop:Generator_TableClassName="ExpenseManagerDataTableDataTable" msprop:Generator_TableVarName="tableExpenseManagerDataTable" msprop:Generator_RowChangedName="ExpenseManagerDataTableRowChanged" msprop:Generator_TablePropName="ExpenseManagerDataTable" msprop:Generator_RowDeletingName="ExpenseManagerDataTableRowDeleting" msprop:Generator_RowChangingName="ExpenseManagerDataTableRowChanging" msprop:Generator_RowEvHandlerName="ExpenseManagerDataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="ExpenseManagerDataTableRowDeleted" msprop:Generator_RowClassName="ExpenseManagerDataTableRow" msprop:Generator_UserTableName="ExpenseManagerDataTable" msprop:Generator_RowEvArgName="ExpenseManagerDataTableRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EntryDate" msprop:Generator_ColumnVarNameInTable="columnEntryDate" msprop:Generator_ColumnPropNameInRow="EntryDate" msprop:Generator_ColumnPropNameInTable="EntryDateColumn" msprop:Generator_UserColumnName="EntryDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CategoryType" msprop:Generator_ColumnVarNameInTable="columnCategoryType" msprop:Generator_ColumnPropNameInRow="CategoryType" msprop:Generator_ColumnPropNameInTable="CategoryTypeColumn" msprop:Generator_UserColumnName="CategoryType" type="xs:string" minOccurs="0" />
+              <xs:element name="TransactionType" msprop:Generator_ColumnVarNameInTable="columnTransactionType" msprop:Generator_ColumnPropNameInRow="TransactionType" msprop:Generator_ColumnPropNameInTable="TransactionTypeColumn" msprop:Generator_UserColumnName="TransactionType" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

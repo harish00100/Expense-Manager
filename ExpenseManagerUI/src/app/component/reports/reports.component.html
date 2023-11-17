@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-md bg-body-tertiary" style="width: 100%;">
+    <div class="container-fluid bg-white">
+      <a class="navbar-brand" style="cursor: default;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+          class="bi bi-cash-coin text-secondary" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" />
+          <path
+            d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" />
+          <path
+            d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" />
+          <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
+        </svg>EXM</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-around w-50 contents">
+          <li class="nav-item">
+            <a [class]="nav" aria-current="page" routerLink="/Spending">Spending</a>
+          </li>
+          <li class="nav-item">
+            <a [class]="nav" aria-current="page" routerLink="/Transactions">Transactions</a>
+          </li>
+          <li class="nav-item">
+            <a [class]="nav" aria-current="page" routerLink="/Categories">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a [class]="navActive" aria-current="page" routerLink="/Reports">Reports</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="d-flex bg-dark-subtle text-center" style="padding-top: 20px; min-height: 90vh;">
+    <div class="row col-md-12 pt-2 text-dark fw-bold fs-4">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 form-group">
+        <label for="product" class="pb-2">Report Generation Form</label> 
+        <div class="d-flex flex-row">
+        <select #optionChoice id="product" class="form-control" [(ngModel)]="option">
+          <option value="" disabled>Select an option</option>
+          <!-- <option value="Income">Income</option>
+          <option value="Expense">Expense</option> -->
+          <option *ngFor="let item of _jsondataService.option" [ngValue]="item.option">{{item.option}}</option> 
+        </select>
+        <button type="button" class="btn btn-dark text-white mx-3 rounded-pill px-3" (click)="clearfn()">Clear</button>
+      </div>
+  
+        <div class="d-flex flex-column col-lg-3 col-md-4 col-sm-4 col-4">
+          <div class="text-end">
+            <label for="from" class="fs-6">From Date</label>
+            <input #Expenseval type="date" id="from">
+          </div>
+          <div class="text-end">
+            <label for="to" class="fs-6">To Date</label>
+            <input #Expenseval1 type="date" id="to">
+          </div>
+        </div>
+
+  
+        <button (click)="viewReport(optionChoice.value,Expenseval.value,Expenseval1.value)" class="btn mt-3 text-white btn-dark">Generate Report</button>
+      </div>
+    
+      
+      <iframe *ngIf="ReportUrl" [src]="ReportUrl"  height="700px" allowfullscreen></iframe>
+    </div>
+  </div>
+  
+  
+  
+  

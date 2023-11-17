@@ -1,0 +1,161 @@
+<div class="">
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" style="cursor: default;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cash-coin text-secondary" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+              <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+              <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
+              <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+            </svg>EXM
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-around w-50 contents">
+              <li class="nav-item">
+                <a [class]="nav" aria-current="page" routerLink="/Spending">Spending</a>
+              </li>
+              <li class="nav-item">
+                <a [class]="navActive" aria-current="page" routerLink="/Transactions">Transactions</a>
+              </li>
+              <li class="nav-item">
+                <a [class]="nav" aria-current="page" routerLink="/Categories">Categories</a>
+              </li> 
+              <li class="nav-item">
+                <a [class]="nav" aria-current="page" routerLink="/Reports">Reports</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="bg-danger-subtle d-flex flex-column p-2 " style="min-height: 100vh;">
+        <div class="d-flex flex-row bg-white text-center my-3 fs-4 border rounded">
+          <div class="col-lg-7 col-md-5 col-sm-4 col-4 text-end align-self-center">Income list</div>
+          <div class="d-flex flex-column col-lg-3 col-md-4 col-sm-4 col-4">
+            <div class="text-end">
+              <label for="from" class="fs-6">From Date</label>
+              <input #val type="date" id="from" [style]="defaultFromStyle" (click)="fromcalc(val)">
+            </div>
+            <div class="text-end">
+              <label for="to" class="fs-6">To Date</label>
+              <input #vals type="date" id="to" [style]="defaultToStyle" (click)="tocalc(vals)">
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-4 align-self-center">
+            <button class="col-2" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="changeValue()" >
+              {{dropdownIncomeChange}}
+            </button>
+            
+            <ul class="dropdown-menu ">
+              <li *ngFor="let item of this.categoryList;let i=index"><a  #val class="dropdown-item cursor" *ngIf="item.Type!='Expense'"
+                  (click)="chooseIncomeCategory(val)">{{item.Category}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex flex-nowrap border border-white border-3">
+          <div class="order-1 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center fw-semibold">Income</div>
+          <div class="order-1 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center fw-semibold">Category</div>
+          <div class="order-2 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center fw-semibold">Date (DD/MM/YYYY)</div>
+          <div class="order-3 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center fw-semibold">Edit options</div>
+        </div>
+        <div *ngFor="let item of IncomeList;let i=index" class="d-flex flex-nowrap border border-white border-0">
+          <div #val1 *ngIf="item.type=='Income'" class="order-1 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center">{{item.Amount}}</div>
+          <div #val2 *ngIf="item.type=='Income'" class="order-1 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center">{{item.Category}}</div>
+          <div #val3 *ngIf="item.type=='Income'" class="order-2 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center">{{item.EntryDate}}</div>
+          <div *ngIf="item.type=='Income'" class="d-flex order-3 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center ">
+            <i class="d-flex w-50 fa fa-solid fa-pen-to-square justify-content-center fs-4 hover" (click)="edit(item)"></i>
+            <span class="d-flex w-50  justify-content-center fs-4 hover">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-trash3-fill text-danger " viewBox="0 0 16 16" (click)="delete(item,'Income')">
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+              </svg>
+          </span>
+          </div>
+        </div>
+        <div class="d-flex flex-row bg-white text-center my-4 fs-4 border rounded">
+          <div class="col-lg-7 col-md-5 col-sm-4 col-4 text-end align-self-center">Expense list</div>
+          <div class="d-flex flex-column col-lg-3 col-md-4 col-sm-4 col-4">
+            <div class="text-end">
+              <label for="from" class="fs-6">From Date</label>
+              <input #Expenseval type="date" id="from" [style]="defaultExpenseFromStyle" (click)="fromExpensecalc(Expenseval)">
+            </div>
+            <div class="text-end">
+              <label for="to" class="fs-6">To Date</label>
+              <input #Expenseval1 type="date" id="to" [style]="defaultExpenseToStyle" (click)="toExpensecalc(Expenseval1)">
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-4 align-self-center">
+            <button class="col-2" class="btn btn-secondary dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="changeValue()">
+              {{dropdownExpenseChange}}
+            </button>
+            
+            <ul class="dropdown-menu ">
+              <li *ngFor="let item of this.categoryList;let i=index"><a  #val class="dropdown-item cursor" *ngIf="item.Type=='Expense'"
+                  (click)="chooseExpenseCategory(val)">{{item.Category}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex flex-nowrap border border-white border-3">
+          <div class="order-1 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center fw-semibold">Expense</div>
+          <div class="order-1 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center fw-semibold">Category</div>
+          <div class="order-2 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center fw-semibold">Date (DD/MM/YYYY)</div>
+          <div class="order-3 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center fw-semibold">Edit options</div>
+        </div>
+        <div *ngFor="let item of ExpenseList;let i=index" class="d-flex flex-nowrap border border-white border-0">
+          <div *ngIf="item.type=='Expense'" class="order-1 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center">{{item.Amount}}</div>
+          <div *ngIf="item.type=='Expense'" class="order-1 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center">{{item.Category}}</div>
+          <div *ngIf="item.type=='Expense'" class="order-2 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center">{{item.EntryDate}}</div>
+          <div *ngIf="item.type=='Expense'" class="d-flex order-3 p-2 border border-white col-sm-3 col-lg-3 col-3 text-center">
+            <i class="d-flex w-50 fa fa-solid fa-pen-to-square  justify-content-center fs-4 hover" (click)="edit(item)"></i>
+            <span class="d-flex w-50  justify-content-center fs-4 hover">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-trash3-fill text-danger" viewBox="0 0 16 16" (click)="delete(item,'Expense')">
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+</div>
+
+<div *ngIf="ShowForm" class="box bg-dark-subtle">
+  <form [formGroup]="form">
+
+      <h5 class="py-3 text-center border-bottom border-black"> Income/ Expense</h5>
+
+    <div class="p-2">
+      <label class="col-md-6 col-6 text-center" for="type">{{IncomeOrExpense}}</label>
+      <input #val1  class="col-md-6 col-6" type="number" [value]="Income" id="type" >
+    </div>
+
+    <div class="p-2">
+      <label class="col-md-6 col-6 text-center" for="Category">Category</label>
+      <!-- <input #val2  class="col-md-6 col-6" type="text" id="Category" [value]="Category" > -->
+      
+      <button class="col-md-6 col-6" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
+        {{dropdown}}
+      </button>
+      
+      <ul class="dropdown-menu col-md-6 col-6">
+        <li *ngFor="let item of this.categoryList;let i=index"><a  #val class="dropdown-item cursor" *ngIf="item.Type==IncomeOrExpense"
+            (click)="chooseCategory(val)">{{item.Category}}</a></li>
+      </ul>
+    </div>
+
+    <div class="p-2">
+      <label class="col-md-6 col-6 text-center" for="date">Date</label>
+      <input #val3  class="col-md-6 col-6" type="date" id="date" [value]="Dates" >
+    </div>
+
+    <div class="p-2 d-flex">
+      <div class=" col-md-6 col-6 text-center">
+        <button class="btn btn-dark px-5" type="button" (click)="save(val1.value,val3.value)">Save</button>
+      </div>
+      <div class=" col-md-6 col-6 text-center">
+        <button class="btn btn-dark px-5" type="button" (click)="close()">Close</button>
+      </div>
+    </div>
+    
+  </form>
+</div>

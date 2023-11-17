@@ -1,0 +1,16 @@
+.hover:hover{
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.box{
+    width: 500px;
+    height: 270px;
+    top: 45%;
+    left: 50%;
+    position: absolute;
+    margin-top: -200px;
+    margin-left: -250px;
+    border-radius: 10px;
+    z-index: 1;
+}
